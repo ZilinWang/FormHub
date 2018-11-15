@@ -8,3 +8,69 @@
 .nav-logo {
     margin: 8px 10px 5px 10px;
 }
+
+.spaceBar {
+    width: 100%;
+    height: 50px;
+    background-color: rgba(250, 250, 210, 0.16);
+}
+
+.centralDiv {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 70%;
+    min-height: 150vh;
+    border: 1px solid gainsboro;
+}
+
+#pendingForms {
+    font-size: 18px;
+    font-family: 'Hind', sans-serif;
+    margin-top: 20px;
+}
+
+.greyButton {
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border: 1px solid lightgrey;
+    border-radius: 4px;
+    color: darkgrey;
+}
+
+.greenButton:hover {
+    color: #fff;
+    background-color: #1b6e1b;
+    border-color: #144f14;
+}
+
+.greenButton {
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border: 1px solid lightgrey;
+    border-radius: 4px;
+    color: white;
+    background-color: #29a729;
+}
+
+.fa-check-square-o {
+    color: #29a729
+}
+
+.fa-square-o {
+    color: #9da4af;
+}
