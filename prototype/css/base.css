@@ -18,6 +18,9 @@ body {
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
+.navbar li {
+    cursor: pointer;
+}
 label {
     display: inline-block;
     max-width: 100%;
@@ -42,7 +45,7 @@ label {
     border: 1px solid gainsboro;
 }
 
-#pendingForms {
+.bsForms {
     font-size: 18px;
     font-family: 'Hind', sans-serif;
     margin-top: 20px;
