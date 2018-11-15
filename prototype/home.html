@@ -6,12 +6,12 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/base.css">
     <title>Formhub</title>
 </head>
 
-<body class="container-fluid" onLoad="onLoad();">
+<body class="container-fluid">
     <nav class="navbar navbar-default navbar-static-top">
         <div class="navbar-header"> <button type="button" class="collapsed navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-8" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
             <a href="home.html">
@@ -21,9 +21,8 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-8">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Pending</a></li>
-                <li><a href="#">Processed</a></li>
-                <li><a href="#">Cancelled</a></li>
+                <li><a href="pending.html">Pending</a></li>
+                <li><a href="processed.html">Processed</a></li>
             </ul>
         </div>
     </nav>
@@ -36,10 +35,11 @@
             <div class="center-block">
                 <p id="errorMsg" class="bg-danger"></p>
             </div>
-            <form id="login-form" class="form-horizontal">
+            <form id="home-form">
                 <div class="form-group">
-                    <select class="form-control" id="chooseform" name="chooseform" type="chooseform" placeholder="Choose a form...">
-                        <option value="" selected hidden>Choose a form...</option>
+                    <label for="form-select">What would you like to do?</label>
+                    <select id="form-select" onchange="onFormSelectHome();" class="form-control" name="form-select" type="form-select" placeholder="Choose a form...">
+                        <option selected hidden>Choose a form...</option>
                         <option value=0>Drop a class</option>
                         <option value=1 disabled>Enroll in a class</option>
                         <option value=2 disabled>Withdraw from a class</option>
@@ -47,11 +47,12 @@
                         <option value=3 disabled>Change my advisor</option>
                     </select>
                 </div>
+
             </form>
         </div>
         <div class="col-xs-2"></div>
     </div>
-    <!--<script src="/js/login.js"></script>-->
+    <script src="js/yeet.js"></script>
 </body>
 
 </html>

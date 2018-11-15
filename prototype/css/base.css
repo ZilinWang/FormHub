@@ -8,3 +8,19 @@
 .nav-logo {
     margin: 8px 10px 5px 10px;
 }
+
+.text-block {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+body {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 100;
+}
