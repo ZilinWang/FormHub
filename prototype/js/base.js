@@ -49,23 +49,21 @@ let processedForms = [
             status: "Approved"
         }],
         processedTime: "9/5/2018, 3:06:21 PM"
-    }, {
-        form: "Drop",
-        specification: "CS-2201-01",
-        signatures: [{
-            name: "Gerald Roth",
-            status: "Approved",
-        }, {
-            name: "Julie Johnson",
-            status: "Approved"
-        }],
-        processedTime: "11/15/2018, 3:05:03 PM"
     }
 ];
 
 const onLoadProcessedForms = () => {
-    // console.log(processedForms);
-    processedForms.forEach(function(element) {
+
+    sessionStorage.setItem("i1", JSON.stringify(processedForms[0]));
+    sessionStorage.setItem("i2", JSON.stringify(processedForms[1]));
+
+    var items = [];
+    items.push(JSON.parse(sessionStorage.getItem("i1")));
+    items.push(JSON.parse(sessionStorage.getItem("i2")));
+    if (sessionStorage.getItem("i3") != null)
+        items.push(JSON.parse(sessionStorage.getItem("i3")));
+
+    items.forEach(function(element) {
         var tRow = document.createElement("tr");
         var td1 = document.createElement("td");
         td1.innerHTML = element.form + "<br>" + "<span style=\"font-size: 13px;\"><i>" + element.specification + "</i></span>";
@@ -77,39 +75,30 @@ const onLoadProcessedForms = () => {
         tRow.appendChild(td2);
         tRow.appendChild(td3);
         document.getElementById("pTable").appendChild(tRow);
-    });
 
-    // let d1 = new Date(2018, 9, 22, 10, 33, 30, 0);
-    // let d2 = new Date(2018, 8, 5, 15, 6, 21, 0);
-    //
-    // let n1 = d1.toLocaleString();
-    // let n2 = d2.toLocaleString();
-    // console.log(n1);
-    //
-    // document.getElementById("date1").innerHTML = n1;
-    // document.getElementById("date2").innerHTML = n2;
+    });
 };
 
 function handleSubmit() {
     var element = document.getElementById("drop2201");
     element.parentNode.removeChild(element);
 
-    let d1 = Date.now();
-    let n1 = d1.toLocaleString();
+    let d1 = new Date();
+    let s1 = d1.toLocaleString();
 
-    // let newObject = {
-    //     form: "Drop",
-    //     specification: "CS-2201-01",
-    //     signatures: [{
-    //         name: "Gerald Roth",
-    //         status: "Approved",
-    //     }, {
-    //         name: "Julie Johnson",
-    //         status: "Approved"
-    //     }],
-    //     processedTime: n1
-    // };
-    // processedForms.push(newObject);
-    // console.log(processedForms);
+    let newObject = {
+        form: "Drop",
+        specification: "CS-2201-01",
+        signatures: [{
+            name: "Gerald Roth",
+            status: "Approved",
+        }, {
+            name: "Julie Johnson",
+            status: "Approved"
+        }],
+        processedTime: s1
+    };
+    processedForms.push(newObject);
+    sessionStorage.setItem("i3", JSON.stringify(processedForms[2]));
 
 }
