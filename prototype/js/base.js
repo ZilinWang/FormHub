@@ -2,8 +2,12 @@
  * Created by wangshibao on 11/14/18.
  */
 // 1= home, 2=pending, 3=processed
+
+let courses = ["CS-2201-01", "EECE-2112-02", "CHEM-1601-01", "MATH-1301-02"];
+let instructors = ["Gerald Roth", "Bharat Bhuva", "Tara Todd", "Lori Rafter"];
+
 const switchPage = (num) => {
-    if (num === 1){
+    if (num === 1) {
         document.getElementById("BIGhome").style.display = "block";
         document.getElementById("BIGpending").style.display = "none";
         document.getElementById("BIGprocessed").style.display = "none";
@@ -27,82 +31,84 @@ const switchPage = (num) => {
     }
 };
 
+let pendingForms = []
+    // let pendingForms = [{
+    //     form: "Drop",
+    //     specification: "CS-2201-01",
+    //     signatures: [{
+    //         name: "Gerald Roth",
+    //         status: "Approved",
+    //     }, {
+    //         name: "Julie Johnson",
+    //         status: "Approved"
+    //     }]
+    // }, {
+    //     form: "Withdraw",
+    //     specification: "EECE-2112-01",
+    //     signatures: [{
+    //         name: "Bharat Bhuva",
+    //         status: "Not responded",
+    //     }, {
+    //         name: "Julie Johnson",
+    //         status: "Not responded"
+    //     }]
+    // }];
 
-let pendingForms = [{
-    form: "Drop",
-    specification: "CS-2201-01",
-    signatures: [{
-        name: "Gerald Roth",
-        status: "Approved",
-    }, {
-        name: "Julie Johnson",
-        status: "Approved"
-    }]
-}, {
-    form: "Withdraw",
-    specification: "EECE-2112-01",
-    signatures: [{
-        name: "Bharat Bhuva",
-        status: "Not responded",
-    }, {
-        name: "Julie Johnson",
-        status: "Not responded"
-    }]
-}];
+let processedForms = []
 
-let processedForms = [{
-    form: "Major Declaration",
-    specification: "Computer Science",
-    signatures: [{
-        name: "Gerald Roth",
-        status: "Approved",
-    }, {
-        name: "Julie Johnson",
-        status: "Approved"
-    }],
-    processedTime: "10/22/2018, 10:33:30 AM"
-}, {
-    form: "Withdraw",
-    specification: "KOR-1101-01",
-    signatures: [{
-        name: "BaeSeok Jang",
-        status: "Approved",
-    }, {
-        name: "Julie Johnson",
-        status: "Approved"
-    }],
-    processedTime: "9/5/2018, 3:06:21 PM"
-}];
+// let processedForms = [{
+//     form: "Major Declaration",
+//     specification: "Computer Science",
+//     signatures: [{
+//         name: "Gerald Roth",
+//         status: "Approved",
+//     }, {
+//         name: "Julie Johnson",
+//         status: "Approved"
+//     }],
+//     processedTime: "10/22/2018, 10:33:30 AM"
+// }, {
+//     form: "Withdraw",
+//     specification: "KOR-1101-01",
+//     signatures: [{
+//         name: "BaeSeok Jang",
+//         status: "Approved",
+//     }, {
+//         name: "Julie Johnson",
+//         status: "Approved"
+//     }],
+//     processedTime: "9/5/2018, 3:06:21 PM"
+// }];
 
-let courses = ["CS-3251-01", "EECE-2112-02", "CHEM-1601-01", "MATH-1301-02"];
+
 
 /* session storage*/
-const onLoadProcessedForms = () => {
+// const onLoadProcessedForms = () => {
 
-    sessionStorage.setItem("i1", JSON.stringify(processedForms[0]));
-    sessionStorage.setItem("i2", JSON.stringify(processedForms[1]));
+//     sessionStorage.setItem("i1", JSON.stringify(processedForms[0]));
+//     sessionStorage.setItem("i2", JSON.stringify(processedForms[1]));
 
-    let items = [];
-    items.push(JSON.parse(sessionStorage.getItem("i1")));
-    items.push(JSON.parse(sessionStorage.getItem("i2")));
-    if (sessionStorage.getItem("i3") != null)
-        items.push(JSON.parse(sessionStorage.getItem("i3")));
+//     let items = [];
+//     items.push(JSON.parse(sessionStorage.getItem("i1")));
+//     items.push(JSON.parse(sessionStorage.getItem("i2")));
+//     if (sessionStorage.getItem("i3") != null)
+//         items.push(JSON.parse(sessionStorage.getItem("i3")));
 
-    items.forEach(function(element) {
-        var tRow = document.createElement("tr");
-        var td1 = document.createElement("td");
-        td1.innerHTML = element.form + "<br>" + "<span style=\"font-size: 15px;\"><i>" + element.specification + "</i></span>";
-        var td2 = document.createElement("td");
-        td2.innerHTML = element.signatures[0].name + "<br>" + element.signatures[1].name;
-        var td3 = document.createElement("td");
-        td3.innerHTML = element.processedTime;
-        tRow.appendChild(td1);
-        tRow.appendChild(td2);
-        tRow.appendChild(td3);
-        document.getElementById("pTable").appendChild(tRow);
+//     items.forEach(function(element) {
+//         var tRow = document.createElement("tr");
+//         var td1 = document.createElement("td");
+//         td1.innerHTML = element.form + "<br>" + "<span style=\"font-size: 15px;\"><i>" + element.specification + "</i></span>";
+//         var td2 = document.createElement("td");
+//         td2.innerHTML = element.signatures[0].name + "<br>" + element.signatures[1].name;
+//         var td3 = document.createElement("td");
+//         td3.innerHTML = element.processedTime;
+//         tRow.appendChild(td1);
+//         tRow.appendChild(td2);
+//         tRow.appendChild(td3);
+//         document.getElementById("pTable").appendChild(tRow);
 
-    });
-};
+//     });
+// };
 
 
 const onLoadProcessed = () => {
@@ -122,8 +128,8 @@ const onLoadProcessed = () => {
     });
 };
 
-function handleSubmit() {
-    let element = document.getElementById("drop2201");
+let handleSubmit = (button) => {
+    element = button.parentNode.parentNode;
     element.parentNode.removeChild(element);
 
     let d1 = new Date();
@@ -209,12 +215,16 @@ let onDropCourseDropdownSelect = () => {
     let approversDiv = document.createElement("div");
     approversDiv.classList.add("text-block");
 
-    let approvers = ["John Rafter", "Julie Johnson"];
-    for (let i = 0; i < approvers.length; i++) {
-        let nameP = document.createElement("p");
-        nameP.innerHTML = approvers[i];
-        approversDiv.appendChild(nameP);
-    }
+    let courseSelect = document.getElementById("course-select");
+    let whichCourse = courseSelect.options[courseSelect.selectedIndex].value;
+    // First approver
+    let nameP = document.createElement("p");
+    nameP.innerHTML = instructors[whichCourse];
+    approversDiv.appendChild(nameP);
+    // Second approver
+    let nameP2 = document.createElement("p");
+    nameP2.innerHTML = "John Rafter";
+    approversDiv.appendChild(nameP2);
 
     let btnDiv = document.createElement("div");
     btnDiv.id = "submitBtnDiv";
@@ -248,39 +258,56 @@ let addToPending = (obj) => {
     let cell3 = row.insertCell(3);
     cell0.innerHTML = obj.form + "<br>" + "<span style=\"font-size: 15px;\"><i>" + obj.specification + "</i></span>";
     cell1.innerHTML = obj.signatures[0].name + "<br>" + obj.signatures[1].name;
-    cell2.innerHTML = "<i class=\"fa fa-square-o\"></i><br>" + "<i class=\"fa fa-square-o\"></i><br>";
-    cell3.innerHTML = "<button class=\"greyButton\" disabled>Submit</button>" + "   " +
-        "<button type=\"button\" class=\"btn btn-primary\" onclick='cancelRequest(this.parentNode)'>Cancel</button>";
+
+    let approved = true;
+    for (let i = 0; i < obj.signatures.length; i++) {
+        if (obj.signatures[i].status !== "Approved") {
+            approved = false;
+            break;
+        }
+    }
+    if (approved) {
+        cell2.innerHTML = "<i class=\"fa fa-check-square-o\"></i><br>" + "<i class=\"fa fa-check-square-o\"></i><br>";
+        cell3.innerHTML = "<button class=\"greenButton\" onclick=\"handleSubmit(this);\">Submit</button>" + "   " +
+            "<button type=\"button\" class=\"btn btn-primary\" onclick='cancelRequest(this.parentNode)'>Cancel</button>";
+    } else {
+        cell2.innerHTML = "<i class=\"fa fa-square-o\"></i><br>" + "<i class=\"fa fa-square-o\"></i><br>";
+        cell3.innerHTML = "<button class=\"greyButton\" disabled>Submit</button>" + "   " +
+            "<button type=\"button\" class=\"btn btn-primary\" onclick='cancelRequest(this.parentNode)'>Cancel</button>";
+    }
+
 };
 
 let onSubmitDropFormForApproval = () => {
-    console.log("ajdnasjsa");
+    console.log("form submitted for approval");
     let formSelect = document.getElementById("form-select");
     let form = formSelect.options[formSelect.selectedIndex].value;
 
     let courseSelect = document.getElementById("course-select");
-    let course = courses[courseSelect.options[courseSelect.selectedIndex].value];
+    let whichCourse = courseSelect.options[courseSelect.selectedIndex].value;
+    let course = courses[whichCourse];
 
     let newObject = {
         form: "Drop",
         specification: course,
         signatures: [{
-            name: "Gerald Roth",
-            status: "Approved",
+            name: instructors[whichCourse],
+            status: (whichCourse == 0) ? "Approved" : "Pending Approval"
         }, {
-            name: "Julie Johnson",
-            status: "Approved"
+            name: "John Rafter",
+            status: (whichCourse == 0) ? "Approved" : "Pending Approval"
         }]
     };
+
     addToPending(newObject);
     switchPage(2);
 
     var el = document.getElementById("courseListDiv");
-    el.parentNode.removeChild( el );
+    el.parentNode.removeChild(el);
     el = document.getElementById("facultyDiv");
-    el.parentNode.removeChild( el );
+    el.parentNode.removeChild(el);
     el = document.getElementById("submitBtnDiv");
-    el.parentNode.removeChild( el );
+    el.parentNode.removeChild(el);
     let defaultOption = document.getElementById("defaultChooseFormOption");
     defaultOption.selected = true;
 };
